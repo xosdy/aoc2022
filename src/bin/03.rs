@@ -31,7 +31,7 @@ pub fn part_two(input: &str) -> Option<u32> {
                     .reduce(|acc, x| acc.intersection(&x).copied().collect())
                     .unwrap()
                     .into_iter()
-                    .map(|x| alphabet_to_priority(x))
+                    .map(alphabet_to_priority)
                     .sum::<u32>()
             })
             .sum(),

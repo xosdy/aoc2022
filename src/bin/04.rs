@@ -43,7 +43,7 @@ fn overlaps_range(range1: &RangeInclusive<u32>, range2: &RangeInclusive<u32>) ->
 fn parse(input: &str) -> Vec<Vec<RangeInclusive<u32>>> {
     input
         .lines()
-        .map(|line| line.split(',').map(|range| parse_range(range)).collect())
+        .map(|line| line.split(',').map(parse_range).collect())
         .collect()
 }
 
