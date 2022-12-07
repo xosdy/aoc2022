@@ -10,10 +10,12 @@ fn main() {
         .map(|day| {
             let day = format!("{day:02}");
 
-            let cmd = Command::new("cargo")
-                .args(["run", "--release", "--bin", &day])
-                .output()
-                .unwrap();
+            let mut args = vec!["run", "--bin", &day];
+            if cfg!(not(debug_assertions)) {
+                args.push("--release");
+            }
+
+            let cmd = Command::new("cargo").args(&args).output().unwrap();
 
             println!("----------");
             println!("{ANSI_BOLD}| Day {day} |{ANSI_RESET}");
