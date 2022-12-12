@@ -59,7 +59,7 @@ pub fn part_two(input: &str) -> Option<String> {
 fn parse(input: &str) -> impl Iterator<Item = Instruction> + '_ {
     input.lines().flat_map(|line| {
         let args = line.split_ascii_whitespace().collect_vec();
-        match args[0].as_ref() {
+        match args[0] {
             "noop" => Some(Instruction::Noop),
             "addx" => Some(Instruction::Add(args[1].parse().ok()?)),
             _ => None,

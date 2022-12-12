@@ -13,7 +13,7 @@ pub fn part_two(input: &str) -> Option<usize> {
 fn tail_visited_count(movements: &Vec<Movement>, knot: usize) -> usize {
     let mut rope = vec![Point2::origin(); knot];
     let mut tail_visited = HashSet::new();
-    tail_visited.insert(rope.last().unwrap().clone());
+    tail_visited.insert(*rope.last().unwrap());
 
     for &(direction, n) in movements {
         for _ in 0..n {
@@ -21,7 +21,7 @@ fn tail_visited_count(movements: &Vec<Movement>, knot: usize) -> usize {
             for i in 0..knot - 1 {
                 rope[i + 1] = tail_step(&rope[i], &rope[i + 1]);
             }
-            tail_visited.insert(rope.last().unwrap().clone());
+            tail_visited.insert(*rope.last().unwrap());
         }
     }
 
